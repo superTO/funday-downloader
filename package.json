@@ -1,0 +1,19 @@
+{
+  "name": "funday-downloader",
+  "version": "1.0.0",
+  "description": "download media",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "superTO",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/superTO/funday-downloader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/superTO/funday-downloader/issues"
+  },
+  "homepage": "https://github.com/superTO/funday-downloader#readme"
+}
