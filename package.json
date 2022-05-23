@@ -4,7 +4,8 @@
   "description": "download media",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc --watch -p ./tsconfig.json"
   },
   "author": "superTO",
   "license": "MIT",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/superTO/funday-downloader/issues"
   },
-  "homepage": "https://github.com/superTO/funday-downloader#readme"
+  "homepage": "https://github.com/superTO/funday-downloader#readme",
+  "dependencies": {
+    "@types/puppeteer": "^5.4.6",
+    "puppeteer": "^14.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  }
 }
