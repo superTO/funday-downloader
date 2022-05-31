@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "tsc --watch -p ./tsconfig.json"
+    "watch": "tsc --watch -p ./tsconfig.json",
+    "start": "tsc -p ./tsconfig.json && node index.js"
   },
   "author": "superTO",
   "license": "MIT",
