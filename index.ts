@@ -1,6 +1,8 @@
 // due to "esModuleInterop: true"
 import puppeteer from 'puppeteer';
+import { mkdirSync } from 'fs';
 import * as auth from './auth.json';
+import * as targetLevel from './level.json';
 
 (async () => {
     const browser = await puppeteer.launch({ headless: false });
@@ -19,9 +21,23 @@ import * as auth from './auth.json';
     // Error: Node is either not clickable or not an HTMLElement
     // await page.click("#llogin");
     
+    await Login(page);
+
+    await page.waitForTimeout(2000);
+    // move to download page
+    await page.goto('https://funday.asia/mylesson/intro.asp');
+    const lesson = await page.waitForSelector(".Tutor-icon");
+    await lesson?.click();
+
+  
+    // setTimeout(async () => {
+        // await browser.close();
+    // }, 5000);
+})();
+
+async function Login(page: puppeteer.Page): Promise<void>{
     // click login button
     await page.evaluate(()=> (document.querySelector('#llogin') as any).click())
-
     // 等 id=Cemail 出現
     await page.waitForSelector("#Cemail")
 
@@ -29,14 +45,31 @@ import * as auth from './auth.json';
     await page.type("#Cemail", auth.account);
     await page.type("#Cpassword", auth.password);
 
-    // await page.click("#login2");
+    await page.click("#login2");
+}
 
-    // await page.goto('https://funday.asia/mylesson/intro.asp');
+async function DownloadFile(page: puppeteer.Page, level: string = targetLevel.level): Promise<void>{
+    console.log(level);
+    // click level
+    const element = await page.waitForSelector(level); // select the element
+    await element?.click();
 
-    // await page.click(".Tutor-icon");
-    // await page.screenshot({ path: 'example.png' });
-  
-    // setTimeout(async () => {
-        // await browser.close();
-    // }, 5000);
-})();
+    const folderName = await page.$eval(".TitleF", item => {return item.innerHTML});
+    // create folder
+    mkdirSync(folderName);
+
+    // let file = await page.content(".goFile");
+    // file?._context
+    // while(){
+        
+    // }
+    // const value = await element?.evaluate(el => el.textContent); // grab the textContent from the element, by evaluating this function in the browser context
+    // click download button
+    // element = await page.waitForSelector("錄影下載");
+    // await element?.click();
+    // element = await page.waitForSelector("教材下載");
+    // await element?.click();
+    // element = await page.waitForSelector("補充教材");
+    // await element?.click();
+    //切換分頁
+}
